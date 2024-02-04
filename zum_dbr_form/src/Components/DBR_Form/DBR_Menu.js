@@ -1,46 +1,24 @@
-import React, { Component } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import Table from "react-bootstrap/Table";
+import React, { useState } from 'react';
+import UpdatedTable from './DBR_Data';
+import MyTable from './DBR_Jobs';
 
-export default class DBRMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeMenuItem: 1,
-    };
-  }
+const ParentComponent = () => {
+  // Shared state that will be used by both tables
+  const [receiverOrderCode, setReceiverOrderCode] = useState(new Array(10).fill(null));
 
-  render() {
-    return (
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th colSpan={3}>District Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th size="sm">Time Started</th>
-            <th>Time Stopped</th>
-            <th>HOURS</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td colSpan={2}>Total Hours</td>
-            <td></td>
-          </tr>
-        </tbody>
-        <Dropdown></Dropdown>
-      </Table>
-    );
-  }
-}
+  // Callback function for when an update is made in MyTable
+  const handleUpdate = (index, code) => {
+    let updatedCodes = [...receiverOrderCode];
+    updatedCodes[index] = code;
+    setReceiverOrderCode(updatedCodes);
+  };
+
+  return (
+    <div>
+      <MyTable onReceiverOrderUpdate={handleUpdate} receiverOrderCode={receiverOrderCode} />
+      <UpdatedTable receiverOrderCode={receiverOrderCode} />
+    </div>
+  );
+};
+
+export default ParentComponent;
