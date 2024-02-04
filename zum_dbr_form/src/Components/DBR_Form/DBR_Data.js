@@ -2,7 +2,7 @@ import React from 'react';
 
 const UpdatedTable = () => {
   return (
-    <table style={{ width: '100%', border: '1px solid black' }}>
+    <table style={{ width: '25%', border: '1px solid black' }}>
       <tbody>
         {/* First row with 'District Time' spanning 3 columns */}
         <tr>
@@ -28,9 +28,8 @@ const UpdatedTable = () => {
         </tr>
         {/* Last row with 'Total hours' in the last cell */}
         <tr>
-          <td style={{border: '1px solid black' }}></td>
+          <td colSpan={2} style={{ border: '1px solid black', textAlign: 'center' }}>Total hours</td>
           <td style={{ border: '1px solid black' }}></td>
-          <td style={{ border: '1px solid black', textAlign: 'center' }}>Total hours</td>
         </tr>
       </tbody>
     </table>

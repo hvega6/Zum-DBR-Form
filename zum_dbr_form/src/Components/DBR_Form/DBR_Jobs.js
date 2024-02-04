@@ -15,6 +15,7 @@ const MyTable = () => {
     "Dispatch#",
     "Cor"
   ];
+  
 
   // State to handle showing the dropdown
   const [dropdownRowIndex, setDropdownRowIndex] = useState(null);
@@ -22,7 +23,7 @@ const MyTable = () => {
   const [receiverOrderCode, setReceiverOrderCode] = useState(new Array(numRows).fill(null));
 
   // Style for cells
-  const cellStyle = { border: '1px solid black', padding: 10, textAlign: 'center', cursor: 'pointer' };
+  const cellStyle = { border: '1.5px solid black', padding: 10, textAlign: 'center', cursor: 'pointer' };
 
   const handleSchoolNameClick = rowIndex => {
     setDropdownRowIndex(rowIndex); // Shows the dropdown for the clicked row
@@ -43,12 +44,26 @@ const MyTable = () => {
           if (columnIndex === 0) { // Only the second column ("School Name")
             return (
               <td key={columnIndex} style={cellStyle} onClick={() => handleSchoolNameClick(rowIndex)}>
-                {rowIndex === dropdownRowIndex ? (
-                  <div style={{ position: 'absolute', backgroundColor: 'white', border: '1px solid #ddd' }}>
-                    <div onClick={() => handleReceiverOrderUpdate(rowIndex)}>Nightingale</div>
-                  </div>
-                ) : "Click for schools"}
-              </td>
+  {
+    rowIndex === dropdownRowIndex ? (
+      <div style={{ position: 'relative' }}>
+        <div style={{ position: 'absolute', backgroundColor: 'white', border: '1px solid #ddd', zIndex: 100 }}>
+          {/* Add additional options here */}
+          <div onClick={() => handleReceiverOrderUpdate(rowIndex, 'Deadhead miles')}>DEADHEAD MILES</div>
+          {/* Option 1 */}
+          <div onClick={() => handleReceiverOrderUpdate(rowIndex, 'Nightingale')}>Nightingale</div>
+          {/* Option 2 */}
+          <div onClick={() => handleReceiverOrderUpdate(rowIndex, 'S/B ABS')}>S/B ABS</div>
+          {/* Add additional options here */}
+          <div onClick={() => handleReceiverOrderUpdate(rowIndex, 'S/B School')}>S/B School</div>
+          {/* Add additional options here */}
+          <div onClick={() => handleReceiverOrderUpdate(rowIndex, 'Nightingale')}>Nightingale</div>
+
+        </div>
+      </div>
+    ) : "Click for schools"
+  }
+</td>
             );
           } else {
             return <td key={columnIndex} style={cellStyle}>-</td>;

@@ -15,8 +15,8 @@ const ParentComponent = () => {
 
   return (
     <div>
-      <MyTable onReceiverOrderUpdate={handleUpdate} receiverOrderCode={receiverOrderCode} />
       <UpdatedTable receiverOrderCode={receiverOrderCode} />
+      <MyTable onReceiverOrderUpdate={handleUpdate} receiverOrderCode={receiverOrderCode} />
     </div>
   );
 };
